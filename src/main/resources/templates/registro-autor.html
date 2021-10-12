@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+	<!--<html
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	></html>-->
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Registro Autor</title>
+		<!--CSS-->
+		<link rel="stylesheet" href="/css/style.css" />
+		<!--Bootstrap-->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous"
+		/>
+	</head>
+	<body>
+		<div class="container m-8">
+			<h1>Registro de autores</h1>
+			<form action="/autores/registro" method="POST">
+				<div class="form-group">
+					<label>Nombre</label> <input type="text" class="form-control" name="nombre" placeholder="Nombre del autor">
+				</div>
+				<input class="btn btn-secondary btn-lg" type="submit" value="Registrar">
+			</form>
+		</div>
+		<div class="link-btn">
+				<a class="btn btn-outline-dark" href="/" role="button" >Inicio</a>
+				<a class="btn btn-outline-dark" href="/autores" role="button" >Listado de autores</a>	
+		</div>
+		
+	</body>
+</html>
