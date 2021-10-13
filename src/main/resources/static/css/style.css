@@ -5,7 +5,7 @@
 }
 
 body {
-	background-image: linear-gradient(rgba(0,242,96, .8), rgba(5, 117, 230, .7)),url('/img/fondo2.jpg');
+	background-image: linear-gradient(rgba(40,60,134, .8), rgba(69, 172, 61, .7)),url('/img/fondo2.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
