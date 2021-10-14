@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
-	<!--<html
+	<html
 		xmlns:th="http://www.thymeleaf.org"
 		xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-	></html>-->
+	></html>
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -22,12 +22,19 @@
 	<body>
 		<div class="container m-8">
 			<h1>Registro de autores</h1>
-			<form action="/autores/registro" method="POST">
-				<div class="form-group">
-					<label>Nombre</label> <input type="text" class="form-control" name="nombre" placeholder="Nombre del autor" required>
-				</div>
-				<input class="btn btn-secondary btn-lg" type="submit" value="Registrar">
-			</form>
+			<div>
+				<form th:action="@{/autores/registro}" method="POST">
+					<div class="form-group">
+						<label>Nombre</label> <input type="text" class="form-control" name="nombre" placeholder="Nombre del autor" required>
+					</div>
+					<!--Muestro msje error-->
+					<div th:if="${error}!=null" class="error">
+						<p th:text="${error}"></p>
+					</div>
+					<input class="btn btn-secondary btn-lg" type="submit" value="Registrar">
+				</form>
+			</div>
+			
 		</div>
 		<div class="link-btn">
 				<a class="btn btn-outline-dark" href="/" role="button" >Inicio</a>

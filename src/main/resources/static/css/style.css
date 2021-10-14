@@ -33,6 +33,20 @@ h1 {
 	border-color: black;
 }
 
-.link {
+.link-emotic {
 	color :rgb(255, 255, 255);
+}
+
+.alta {
+	color : green;
+}
+
+.baja {
+	color : red;
+}
+
+.error {
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
 }

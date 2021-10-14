@@ -29,6 +29,7 @@
 					<tr class="h5"> <!--Fila-->
 						<th scope="col" class="fila">Nombre</th> <!--Celda de cabeceza-->
 						<th scope="col" class="fila">Alta/Baja</th>
+						<th scope="col" class="fila">Editar</th>
 						<th scope="col" class="fila">Eliminar</th>
 					</tr>
 				</thead> 
@@ -36,11 +37,18 @@
 					<tr>
 						<td th:text="${autor.nombre}"></td>
 						<td class="fila">
-							<a th:href="@{/autores/alta/{id}(id=${autor.id})}"><i class="fas fa-arrow-up link"></i></a>
-							<a th:href="@{/autores/baja/{id}(id=${autor.id})}"><i class="fas fa-arrow-down link"></i></a>
+							<a th:href="@{/autores/alta/{id}(id=${autor.id})}">
+								<i th:if="${autor.alta}" class="fas fa-arrow-up alta"></i>
+								<i th:unless="${autor.alta}" class="fas fa-arrow-up link-emotic"></i>
+							</a>
+							<a th:href="@{/autores/baja/{id}(id=${autor.id})}">
+								<i th:if="${autor.alta}" class="fas fa-arrow-down link-emotic"></i>
+								<i th:unless="${autor.alta}" class="fas fa-arrow-down baja"></i>
+							</a>
 						</td>
+						<td class="fila"><a th:href="@{/autores/editar/{id}(id=${autor.id})}"><i class="fas fa-edit link-emotic"></i></a></td>
 						<td class="fila">
-							<a th:href="@{/autores/eliminar/{id}(id=${autor.id})}"><i class="fas fa-trash link"></i></a>
+							<a th:href="@{/autores/eliminar/{id}(id=${autor.id})}"><i class="fas fa-trash link-emotic"></i></a>
 						</td>
 					</tr>
 				</tbody>

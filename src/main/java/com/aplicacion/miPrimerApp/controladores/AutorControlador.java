@@ -34,12 +34,14 @@ public class AutorControlador {
 	}
 
 	@PostMapping("/registro")
-	public String registrarAutor(@RequestParam String nombre) {
+	public String registrarAutor(ModelMap modelo, @RequestParam String nombre) {
 		try {
 			autorServicio.guardar(nombre);
-			return "redirect:/autores";
+			modelo.put("exito", "Se registro con exito");
+			return "registro-autor";
 		} catch (Exception e) {
-			return "redirect:/autores";
+			modelo.put("error", e.getMessage());
+			return "registro-autor";
 		}
 	}
 
@@ -74,9 +76,20 @@ public class AutorControlador {
 	}
 
 	@GetMapping("/editar/{id}")
-	public String editarAutor(@PathVariable("id") String id) {
+	public String editarAutor(ModelMap modelo, @PathVariable("id") String id)  {
 		try {
-			autorServicio.editar(id);
+			Autor autor = autorServicio.obtenerPorId(id);
+			modelo.addAttribute("autor", autor);
+			return "editar-autor";
+		}catch(Exception e ) {
+			return "redirect:/autores";
+		}
+	}
+	
+	@PostMapping("/editar/{id}")
+	public String editarAutor(@PathVariable("id") String id, @RequestParam String nombre) {
+		try {
+			autorServicio.editar(id, nombre);
 			return "redirect:/autores";
 		} catch (Exception e) {
 			return "redirect:/autores";

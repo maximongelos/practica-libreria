@@ -70,6 +70,18 @@ public class AutorServicio {
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public Autor obtenerPorId(String id) throws Exception{
+		
+		Optional<Autor> result  = autorRepositorio.findById(id);
+		
+		if (result.isEmpty()) {
+			throw new Exception("No se encontró el autor");
+		} else {
+			return result.get();
+		}
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	public void eliminar(String id) throws Exception {
 		
 		autorRepositorio.deleteById(id);
