@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
-	<!--<html
+	<html
 		xmlns:th="http://www.thymeleaf.org"
 		xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-	></html>-->
+	></html>
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Libreria</title>
+		<title>Modificación de editoriales</title>
 		<!--CSS-->
 		<link rel="stylesheet" href="/css/style.css" />
 		<!--Bootstrap-->
@@ -18,25 +18,21 @@
 			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 			crossorigin="anonymous"
 		/>
-		
 	</head>
 	<body>
 		<div class="container m-8">
-			<h1>Sistema de Libreria</h1>
+			<h1>Modificar editorial</h1>
+			<form th:action="@{/editoriales/editar/{id}(id=${editorial.id})}" method="POST">
+				<div class="form-group">
+					<label>Nombre</label> <input type="text" class="form-control" name="nombre" th:value="${autor.nombre}" required>
+				</div>
+				<input class="btn btn-secondary btn-lg" type="submit" value="Editar">
+			</form>
 		</div>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
 		<div class="link-btn">
-			<a class="btn btn-outline-dark" href="#" role="button" >Libros</a>
-			<a class="btn btn-outline-dark" href="/autores" role="button" >Autores</a>
-			<a class="btn btn-outline-dark" href="/editoriales" role="button" >Editoriales</a>
+				<a class="btn btn-outline-dark" href="/" role="button" >Inicio</a>
+				<a class="btn btn-outline-dark" href="/editoriales" role="button" >Listado de editoriales</a>	
 		</div>
+		
 	</body>
 </html>

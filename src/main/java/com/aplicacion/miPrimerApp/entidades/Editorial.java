@@ -15,15 +15,12 @@ public class Editorial {
 	private String nombre;
 	private Boolean alta;
 	
-	public Editorial(){
-		
+	public Editorial(){	
 	}
 	
-	public Editorial(String id, String nombre, Boolean alta) {
-		super();
-		this.id = id;
+	public Editorial(String nombre) {
 		this.nombre = nombre;
-		this.alta = alta;
+		this.alta = true;
 	}
 	
 	public String getId() {
