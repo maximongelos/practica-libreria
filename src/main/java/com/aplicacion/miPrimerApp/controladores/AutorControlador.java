@@ -25,12 +25,12 @@ public class AutorControlador {
 	public String listarAutores(ModelMap modeloDeAutores) {
 		List<Autor> listaAutores = autorServicio.listarTodos();
 		modeloDeAutores.addAttribute("autores", listaAutores);
-		return "lista-autor";
+		return "Autor/lista-autor";
 	}
 
 	@GetMapping("/registro")
 	public String crearAutor() {
-		return "registro-autor";
+		return "Autor/registro-autor";
 	}
 
 	@PostMapping("/registro")
@@ -38,10 +38,10 @@ public class AutorControlador {
 		try {
 			autorServicio.guardar(nombre);
 			modelo.put("exito", "Se registro con exito");
-			return "registro-autor";
+			return "Autor/registro-autor";
 		} catch (Exception e) {
 			modelo.put("error", e.getMessage());
-			return "registro-autor";
+			return "Autor/registro-autor";
 		}
 	}
 
@@ -80,7 +80,7 @@ public class AutorControlador {
 		try {
 			Autor autor = autorServicio.obtenerPorId(id);
 			modelo.addAttribute("autor", autor);
-			return "editar-autor";
+			return "Autor/editar-autor";
 		}catch(Exception e ) {
 			return "redirect:/autores";
 		}
