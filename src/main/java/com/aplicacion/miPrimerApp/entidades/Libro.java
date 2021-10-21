@@ -21,19 +21,21 @@ public class Libro {
 	private Boolean alta;
 	@ManyToOne
 	private Autor autor;
-   @ManyToOne
-	    private Editorial editorial;
-	public Libro(String id, Long isbn, String titulo, Integer anio, Integer ejemplares, Integer ejemplaresPrestados,
-			Integer ejemplaresRestantes, Boolean alta, Autor autor, Editorial editorial) {
+    @ManyToOne
+	private Editorial editorial;
+   
+	public Libro() {
+	}
+
+	public Libro(Long isbn, String titulo, Integer anio, Integer ejemplares, Autor autor, Editorial editorial) {
 		super();
-		this.id = id;
 		this.isbn = isbn;
 		this.titulo = titulo;
 		this.anio = anio;
 		this.ejemplares = ejemplares;
-		this.ejemplaresPrestados = ejemplaresPrestados;
-		this.ejemplaresRestantes = ejemplaresRestantes;
-		this.alta = alta;
+		this.ejemplaresRestantes = ejemplares;
+		this.ejemplaresPrestados = 0;
+		this.alta = true;
 		this.autor = autor;
 		this.editorial = editorial;
 	}

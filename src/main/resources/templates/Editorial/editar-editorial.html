@@ -26,6 +26,12 @@
 				<div class="form-group">
 					<label>Nombre</label> <input type="text" class="form-control" name="nombre" th:value="${autor.nombre}" required>
 				</div>
+				<div th:if="${error}!=null" class="error">
+					<p th:text="${error}"></p>
+				</div>
+				<div th:if="${exito}!=null" class="error">
+					<p th:text="${exito}"></p>
+				</div>
 				<input class="btn btn-secondary btn-lg" type="submit" value="Editar">
 			</form>
 		</div>

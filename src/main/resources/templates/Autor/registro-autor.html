@@ -31,6 +31,9 @@
 					<div th:if="${error}!=null" class="error">
 						<p th:text="${error}"></p>
 					</div>
+					<div th:if="${exito}!=null" class="error">
+						<p th:text="${exito}"></p>
+					</div>
 					<input class="btn btn-secondary btn-lg" type="submit" value="Registrar">
 				</form>
 			</div>

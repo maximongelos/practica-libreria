@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+	<html
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	></html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Modificar libro</title>
+		<!--CSS-->
+		<link rel="stylesheet" href="/css/style.css" />
+		<!--Bootstrap-->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous"
+		/>
+	</head>
+	<body>
+		<div class="container m-8">
+			<h1>Modificar Libro</h1>
+			<form th:action="@{/libros/editar/{id}(id=${libro.id})}" method="POST">
+				<div class="row">
+				  <div class="col">
+					<label>Titulo</label> <input type="text" class="form-control" name="titulo" th:value="${libro.titulo}" required>
+				  </div>
+				  <div class="col">
+					<label>ISBN</label> <input type="text" class="form-control" name="isbn" th:value="${libro.isbn}" required>
+				  </div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col">
+						<label>Año</label> <input type="text" class="form-control" name="anio" th:value="${libro.anio}" required>
+					</div>
+					<div class="col">
+						<label>Ejemplares</label> <input type="text" class="form-control" name="ejemplares" th:value="${libro.ejemplares}" required>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col form-group">
+						<label>Autor</label>
+						<select class="form-select" name="autorID" aria-label="Default select example">
+                            <option th:each="autor : ${autores}" th:text="${autor.nombre}" th:value="${autor.id}">   </option>
+                        </select>
+					</div>
+					<div class="col form-group">
+						<label>Editorial</label>
+						<select class="form-select" name="editorialID" aria-label="Default select example">
+                            <option th:each="editorial : ${editoriales}" th:text="${editorial.nombre}" th:value="${editorial.id}">   </option>
+                        </select>
+					</div>
+				</div>
+				<br>
+				<div>
+					<input class="btn btn-secondary btn-lg" type="submit" value="Registrar">
+				</div>
+			</form>
+		</div>
+		<div class="link-btn">
+				<a class="btn btn-outline-dark" href="/" role="button" >Inicio</a>
+				<a class="btn btn-outline-dark" href="/libros" role="button" >Listado de libros</a>	
+		</div>
+		
+	</body>
+</html>

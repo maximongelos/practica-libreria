@@ -30,43 +30,25 @@ public class EditorialServicio {
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	public Editorial alta(String id) throws Exception{
 		
-		Optional<Editorial> result  = editorialRepositorio.findById(id);
-		
-		if (result.isEmpty()) {
-			throw new Exception("No se encontró el autor");
-		} else {
-			Editorial e = result.get();
-			e.setAlta(true);
-			return editorialRepositorio.save(e);
-		}
+		Editorial e = this.obtenerPorId(id);
+		e.setAlta(true);
+		return editorialRepositorio.save(e);
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	public Editorial baja(String id) throws Exception {
 		
-		Optional<Editorial> result  = editorialRepositorio.findById(id);
-		
-		if (result.isEmpty()) {
-			throw new Exception("No se encontró el autor");
-		} else {
-			Editorial e = result.get();
-			e.setAlta(false);
-			return editorialRepositorio.save(e);
-		}
+		Editorial e = this.obtenerPorId(id);
+		e.setAlta(false);
+		return editorialRepositorio.save(e);
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	public Editorial editar(String id, String nombre) throws Exception{
 		
-		Optional<Editorial> result  = editorialRepositorio.findById(id);
-		
-		if (result.isEmpty()) {
-			throw new Exception("No se encontró el autor");
-		} else {
-			Editorial e = result.get();
-			e.setNombre(nombre);
-			return editorialRepositorio.save(e);
-		}
+		Editorial e = this.obtenerPorId(id);
+		e.setNombre(nombre);
+		return editorialRepositorio.save(e);
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
@@ -75,7 +57,7 @@ public class EditorialServicio {
 		Optional<Editorial> result  = editorialRepositorio.findById(id);
 		
 		if (result.isEmpty()) {
-			throw new Exception("No se encontró el autor");
+			throw new Exception("No se encontró la editorial");
 		} else {
 			return result.get();
 		}
@@ -101,12 +83,12 @@ public class EditorialServicio {
 	
 	public void validar(String nombre) throws Exception{
 		
-		if (nombre == null || nombre.isEmpty() || nombre.contains("  ")) {
+		if (nombre == null || nombre.isEmpty() || nombre.contains(" ")) {
 			throw new Exception("Debe ingresar el nombre de la editorial");
 		}
 		
 		if (editorialRepositorio.existePorNombre(nombre)) {
-			throw new Exception("La editorial ya esta cargado");
+			throw new Exception("La editorial ya esta cargada");
 		}
 	}
 }

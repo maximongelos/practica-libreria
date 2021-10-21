@@ -30,43 +30,25 @@ public class AutorServicio {
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	public Autor alta(String id) throws Exception{
 		
-		Optional<Autor> result  = autorRepositorio.findById(id);
-		
-		if (result.isEmpty()) {
-			throw new Exception("No se encontró el autor");
-		} else {
-			Autor a = result.get();
+			Autor a = this.obtenerPorId(id);
 			a.setAlta(true);
 			return autorRepositorio.save(a);
-		}
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	public Autor baja(String id) throws Exception {
 		
-		Optional<Autor> result  = autorRepositorio.findById(id);
-		
-		if (result.isEmpty()) {
-			throw new Exception("No se encontró el autor");
-		} else {
-			Autor a = result.get();
-			a.setAlta(false);
-			return autorRepositorio.save(a);
-		}
+		Autor a = this.obtenerPorId(id);
+		a.setAlta(false);
+		return autorRepositorio.save(a);
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	public Autor editar(String id, String nombre) throws Exception{
 		
-		Optional<Autor> result  = autorRepositorio.findById(id);
-		
-		if (result.isEmpty()) {
-			throw new Exception("No se encontró el autor");
-		} else {
-			Autor a = result.get();
-			a.setNombre(nombre);
-			return autorRepositorio.save(a);
-		}
+		Autor a = this.obtenerPorId(id);
+		a.setNombre(nombre);
+		return autorRepositorio.save(a);
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
@@ -101,7 +83,7 @@ public class AutorServicio {
 	
 	public void validar(String nombre) throws Exception{
 		
-		if (nombre == null || nombre.isEmpty() || nombre.contains("  ")) {
+		if (nombre == null || nombre.isEmpty() || nombre.contains(" ")) {
 			throw new Exception("Debe ingresar el nombre del autor");
 		}
 		

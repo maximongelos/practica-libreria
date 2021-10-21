@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+	<html
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	></html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Lista de Libros</title>
+		<!--CSS-->
+		<link rel="stylesheet" href="/css/style.css" />
+		<!--Bootstrap-->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous"
+		/>
+		<!--Iconos-->
+		<script src="https://kit.fontawesome.com/f67994367c.js" crossorigin="anonymous"></script>
+	</head> 
+	<body>
+		<div class="container m-8">
+			<h1>Lista de Libros</h1>
+			<table class="table table-dark table-hover table-bordered">
+				<thead> <!--Encabezado de tabla-->
+					<tr class="h5"> <!--Fila-->
+						<th scope="col" class="fila">Titulo</th> <!--Celda de cabeceza-->
+						<th scope="col" class="fila">Autor</th>
+						<th scope="col" class="fila">Editorial</th>
+						<th scope="col" class="fila">ISBN</th>
+						<th scope="col" class="fila">Año</th>
+						<th scope="col" class="fila">Cantidad Ejemplares</th>
+						<th scope="col" class="fila">Cantidad Prestados</th>
+						<th scope="col" class="fila">Cantidad Restantes</th>
+						<th scope="col" class="fila">Alta/Baja</th>
+						<th scope="col" class="fila">Editar</th>
+						<th scope="col" class="fila">Eliminar</th>
+					</tr>
+				</thead> 
+				<tbody th:each="libro : ${libros}"> <!--Cuerpo de tabla-->
+					<tr>
+						<td th:text="${libro.titulo}"></td>
+						<td th:text="${libro.autor.nombre}"></td>
+						<td th:text="${libro.editorial.nombre}"></td>
+						<td th:text="${libro.isbn}"></td>
+						<td th:text="${libro.anio}"></td>
+						<td th:text="${libro.ejemplares}"></td>
+						<td th:text="${libro.ejemplaresPrestados}"></td>
+						<td th:text="${libro.ejemplaresRestantes}"></td>
+						<td class="fila">
+							<a th:href="@{/libros/alta/{id}(id=${libro.id})}">
+								<i th:if="${libro.alta}" class="fas fa-arrow-up alta"></i>
+								<i th:unless="${libro.alta}" class="fas fa-arrow-up link-emotic"></i>
+							</a>
+							<a th:href="@{/libros/baja/{id}(id=${libro.id})}">
+								<i th:if="${libro.alta}" class="fas fa-arrow-down link-emotic"></i>
+								<i th:unless="${libro.alta}" class="fas fa-arrow-down baja"></i>
+							</a>
+						</td>
+						
+						<td class="fila"><a th:href="@{/libros/editar/{id}(id=${libro.id})}"><i class="fas fa-edit link-emotic"></i></a></td>
+						<td class="fila">
+							<a th:href="@{/libros/eliminar/{id}(id=${libro.id})}"><i class="fas fa-trash link-emotic"></i></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="link-btn">
+			<a class="btn btn-outline-dark" href="/" role="button" >Inicio</a>
+			<a class="btn btn-outline-dark" href="/libros/registro" role="button" >Registro de libros</a>
+		</div>
+	</body>
+</html>
