@@ -20,19 +20,39 @@
 		/>
 	</head>
 	<body>
-		<div class="container m-8">
-			<h1>Modificar autor</h1>
-			<form th:action="@{/autores/editar/{id}(id=${autor.id})}" method="POST">
-				<div class="form-group">
-					<label>Nombre</label> <input type="text" class="form-control" name="nombre" th:value="${autor.nombre}" required>
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<div class="collapse navbar-collapse" id="navbarNav">
+				  <ul class="navbar-nav">
+					<li class="nav-item active">
+					  <a class="nav-link" href="/">Inicio</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" href="/libros">Libros</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" href="/autores">Autores</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" href="/editoriales">Editoriales</a>
+					</li>
+				  </ul>
 				</div>
-				<input class="btn btn-secondary btn-lg" type="submit" value="Editar">
-			</form>
+			</nav>
+			<h1 class="p-3">Modificar Autor</h1>
+		</header>
+		<div class="container">
+			<div class="col-md-12">
+				<form th:action="@{/autores/editar/{id}(id=${autor.id})}" method="POST">
+					<div class="form-group">
+						<label>Nombre</label> <input type="text" class="form-control" name="nombre" th:value="${autor.nombre}" required>
+					</div>
+					<input class="btn btn-secondary btn-lg" type="submit" value="Editar">
+				</form>
+			</div>
 		</div>
-		<div class="link-btn">
-				<a class="btn btn-outline-dark" href="/" role="button" >Inicio</a>
-				<a class="btn btn-outline-dark" href="/autores" role="button" >Listado de autores</a>	
-		</div>
-		
+
+		<footer>
+		</footer>			
 	</body>
 </html>

@@ -87,6 +87,7 @@ public class LibroServicio {
 		l.setTitulo(titulo);
 		l.setAnio(anioN);
 		l.setEjemplares(ejemplaresN);
+		l.setEjemplaresRestantes(ejemplaresN - l.getEjemplaresPrestados());
 		l.setAutor(autor);
 		l.setEditorial(editorial);
 		

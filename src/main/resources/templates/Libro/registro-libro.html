@@ -20,51 +20,79 @@
 		/>
 	</head>
 	<body>
-		<div class="container m-8">
-			<h1>Registro de Libro</h1>
-			<form th:action="@{/libros/registro}" method="POST">
-				<div class="row">
-				  <div class="col">
-					<label>Titulo</label> <input type="text" class="form-control" name="titulo" placeholder="Titulo" required>
-				  </div>
-				  <div class="col">
-					<label>ISBN</label> <input type="text" class="form-control" name="isbn" placeholder="ISBN" required>
-				  </div>
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<div class="collapse navbar-collapse" id="navbarNav">
+				  <ul class="navbar-nav">
+					<li class="nav-item active">
+					  <a class="nav-link" href="/">Inicio</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" href="/libros">Libros</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" href="/autores">Autores</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" href="/editoriales">Editoriales</a>
+					</li>
+				  </ul>
 				</div>
-				<br>
-				<div class="row">
-					<div class="col">
-						<label>Año</label> <input type="text" class="form-control" name="anio" placeholder="Año" required>
+			</nav>
+			<h1 class="p-3">Registro de Libros</h1>
+		</header>
+		<div class="container">
+			<div class="col-md-12">
+				<form th:action="@{/libros/registro}" method="POST">
+					<div class="form-group">
+						<label for="exampleFormControlInput1">Titulo</label>
+						<input type="text" class="form-control"name="titulo" placeholder="Titulo" requiered>
 					</div>
-					<div class="col">
-						<label>Ejemplares</label> <input type="text" class="form-control" name="ejemplares" placeholder="Ejemplares" required>
+	
+					<div class="form-group">
+						<label for="exampleFormControlInput1">ISBN</label>
+						<input type="text" class="form-control"name="isbn" placeholder="ISBN" requiered>
 					</div>
-				</div>
-				<br>
-				<div class="row">
-					<div class="col form-group">
-						<label>Autor</label>
-						<select class="form-select" name="autorID" aria-label="Default select example">
-                            <option th:each="autor : ${autores}" th:text="${autor.nombre}" th:value="${autor.id}">   </option>
-                        </select>
+	
+					<div class="form-group">
+						<label for="exampleFormControlInput1">Año</label>
+						<input type="text" class="form-control"name="anio" placeholder="Año" requiered>
 					</div>
-					<div class="col form-group">
-						<label>Editorial</label>
-						<select class="form-select" name="editorialID" aria-label="Default select example">
-                            <option th:each="editorial : ${editoriales}" th:text="${editorial.nombre}" th:value="${editorial.id}">   </option>
-                        </select>
+	
+					<div class="form-group">
+						<label for="exampleFormControlInput1">Ejemplares</label>
+						<input type="text" class="form-control"name="ejemplares" placeholder="Ejemplares" requiered>
 					</div>
-				</div>
-				<br>
-				<div>
-					<input class="btn btn-secondary btn-lg" type="submit" value="Registrar">
-				</div>
-			</form>
+	
+						
+					<div class="form-group">
+						<label for="exampleFormControlSelect1">Autor</label>
+						<select class="form-control" name="autorID">
+							<option th:each="autor : ${autores}" th:text="${autor.nombre}" th:value="${autor.id}">   </option>
+						</select>
+					</div>
+	
+					<div class="form-group">
+						<label for="exampleFormControlSelect1">Editorial</label>
+						<select class="form-control" name="editorialID">
+							<option th:each="editorial : ${editoriales}" th:text="${editorial.nombre}" th:value="${editorial.id}">   </option>
+						</select>
+					</div>
+					<!--Muestro msje error-->
+					<div th:if="${error}!=null" class="error">
+						<p th:text="${error}"></p>
+					</div>
+					<div th:if="${exito}!=null" class="error">
+						<p th:text="${exito}"></p>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-secondary btn-lg">Registrar</button>
+					</div>
+				</form>
+			</div>
 		</div>
-		<div class="link-btn">
-				<a class="btn btn-outline-dark" href="/" role="button" >Inicio</a>
-				<a class="btn btn-outline-dark" href="/libros" role="button" >Listado de libros</a>	
-		</div>
-		
+
+		<footer>
+		</footer>
 	</body>
 </html>

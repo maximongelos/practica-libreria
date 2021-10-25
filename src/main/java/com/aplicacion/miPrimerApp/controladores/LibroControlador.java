@@ -43,12 +43,14 @@ public class LibroControlador {
 	}
 	
 	@PostMapping("/registro")
-	public String registrarLibro(@RequestParam("isbn") String isbn, @RequestParam("titulo") String titulo, @RequestParam("anio") String anio,
+	public String registrarLibro(ModelMap modelo, @RequestParam("isbn") String isbn, @RequestParam("titulo") String titulo, @RequestParam("anio") String anio,
 			@RequestParam("ejemplares") String ejemplares, @RequestParam("autorID") String autorID, @RequestParam("editorialID") String editorialID) {
 		try {
 			libroServicio.guardar(isbn, titulo, anio, ejemplares, autorID, editorialID);
-			return "redirect:/libros/registro";
+			modelo.put("exito", "Se registro con exito");
+			return "redirect:/libros";
 		} catch (Exception e) {
+			modelo.put("error", e.getMessage());
 			return "redirect:/libros/registro";
 		}
 		
